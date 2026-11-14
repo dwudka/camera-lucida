@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Can public ownership data tell which hospices will lose their Medicare billing privileges?</title>
+<meta name="description" content="I used CMS&#x27;s quarterly hospice enrollment and ownership files and its Provider of Services file, all on data.cms.gov. For every hospice active in July 2023, I recorded 12 facts: years in Medicare, ...">
+<meta property="og:title" content="Can public ownership data tell which hospices will lose their Medicare billing privileges?"><meta property="og:description" content="I used CMS&#x27;s quarterly hospice enrollment and ownership files and its Provider of Services file, all on data.cms.gov. For every hospice active in July 2023, I recorded 12 facts: years in Medicare, ..."><meta property="og:type" content="article"><meta property="og:url" content="https://dwudka.github.io/camera-lucida/2026-11-20-hospice-revocation-model/"><meta property="og:image" content="https://dwudka.github.io/camera-lucida/2026-11-20-hospice-revocation-model/hero.png"><link rel="canonical" href="https://dwudka.github.io/camera-lucida/2026-11-20-hospice-revocation-model/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&family=Spectral:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#16181B;--graphite:#4A4F57;--muted:#6B7078;--hairline:#D9D4C7;--paper:#FAF7F0;--white:#FFFFFF;--fixative:#0E4F5C;--amber:#BB731B}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 18px/1.6 'IBM Plex Sans',Arial,sans-serif}
+main{max-width:680px;margin:0 auto;padding:48px 16px 40px}
+.eyebrow{font:500 12px 'IBM Plex Mono',Consolas,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.eyebrow a{color:var(--muted)}
+h1{font:300 38px/1.12 'Spectral',Georgia,serif;letter-spacing:-.01em;margin:14px 0 24px}
+p{margin:0 0 20px}
+p.q{font:400 24px/1.3 'Spectral',Georgia,serif;color:var(--fixative);margin:28px 0}
+figure{margin:32px 0}
+figure img{width:100%;height:auto;display:block;border:1px solid var(--hairline);border-radius:6px}
+h2{font:500 12px 'IBM Plex Mono',Consolas,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:40px 0 10px}
+.src{font-size:15px;color:var(--graphite);overflow-wrap:anywhere}
+.src p{margin:0 0 8px}
+a{color:var(--fixative)}
+footer{border-top:1px solid var(--hairline);margin-top:48px;padding-top:16px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font:400 12px 'IBM Plex Mono',Consolas,monospace;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+<div class="eyebrow"><a href="../">camera lucida</a> · November 20, 2026</div>
+<h1>Can public ownership data tell which hospices will lose their Medicare billing privileges?</h1>
+<figure><img src="hero.png" alt="Bar chart titled &quot;Within California, the model scores 0.64; years in Medicare alone, 0.65&quot;. It compares how well models rank the 292 hospices whose Medicare billing was revoked between January 2025 and September 2026 above the 6,039 that were not, as AUC where 0.5 is a coin flip. Across all states: a 12-feature model 0.862, years in Medicare plus a California flag 0.866, years in Medicare only 0.779. Within California: the 12-feature model 0.637 and years in Medicare only 0.646. Lines show 90% bootstrap intervals. Source: CMS hospice enrollment and owner files, Provider of Services file and Revoked Medicare Providers and Suppliers, data.cms.gov." width="1080" height="1350"></figure>
+<p>I used CMS&#x27;s quarterly hospice enrollment and ownership files and its Provider of Services file, all on data.cms.gov. For every hospice active in July 2023, I recorded 12 facts: years in Medicare, number of owners, recent owner changes, chain size, whether it sits in one of the four states CMS put under extra enrollment oversight in 2023 (Arizona, California, Nevada, Texas), and a few more. I trained a model on what happened through September 2024. Then I scored the 6,331 hospices active in October 2024 and still enrolled in January 2025 against CMS&#x27;s list of revoked providers: 292 of them were revoked between January 2025 and September 2026.</p>
+<p>Across all states the model looks strong. It ranks a revoked hospice above one that was not revoked 86% of the time (AUC 0.862, 90% interval 0.852 to 0.873). A two-fact model, years in Medicare plus whether the hospice is in California, scores 0.866 (0.853 to 0.879), and 256 of the 292 revoked hospices are in California. Within California the full model scores 0.637 (0.609 to 0.665) and years in Medicare alone 0.646 (0.619 to 0.677), too close to tell apart. Adding Medicare utilization gave no gain that held up across data years.</p>
+<p>My read. The ownership fields add nothing I can measure beyond where a hospice is and how long it has billed Medicare, and they say little about which California hospice is next. A revocation is an administrative action under 42 CFR 424.535, distinct from a finding of fraud, and CMS&#x27;s list keeps only revocations still under a re-enrollment bar.</p>
+<p class="q">When enforcement concentrates in one state, what should a risk model be allowed to learn from where a provider is located?</p>
+<h2>Sources</h2><div class="src"><p>How this was built, and its limits: CMS lists a revocation only after the appeal period, so the list thins out after May 2026 (none effective after 2026-08-07). Ending the test window on May 31, 2026 gives 0.860 across all states; within California the full model scores 0.636 and years in Medicare alone 0.650. Across all states the full model minus the two-fact model is -0.004 (90% interval -0.016 to +0.009).</p></div>
+<footer><span>DANNY · <a href="../">All posts</a></span><span>Views are my own and do not represent my employer.</span></footer>
+</main>
+</body>
+</html>
