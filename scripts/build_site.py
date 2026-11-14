@@ -19,7 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 BASE_URL = "https://dwudka.github.io/camera-lucida/"
 SITE_TITLE = "camera lucida"
-TAGLINE = "Long reads and interactive charts on AI and healthcare economics, built from public data."
+TAGLINE = "Long reads and interactive charts on how Medicare pays for care, and what new AI models can and cannot do with that data."
 DISCLAIMER = "Views are my own and do not represent my employer."
 NAME = re.compile(r"^\d{4}-\d{2}-\d{2}-[a-z0-9][a-z0-9-]*$")
 KINDS = {"long-read": "Long read", "interactive": "Interactive"}
@@ -74,7 +74,7 @@ def index_html(items: list[dict]) -> str:
             for m in items)
         body = f"<ul>\n{rows}\n</ul>"
     else:
-        body = '<p class="empty">Nothing has been published yet.</p>'
+        body = '<p class="empty">The first pieces are in review and will appear here as each one clears it.</p>'
     return f"""<!doctype html>
 <html lang="en">
 <head>

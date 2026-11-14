@@ -19,7 +19,7 @@ def test_empty_site(tmp_path):
     root.mkdir()
     assert bs.build(root, out) == []
     text = (out / "index.html").read_text()
-    assert "Nothing has been published yet." in text and bs.DISCLAIMER in text
+    assert "first pieces are in review" in text and bs.DISCLAIMER in text
     assert (out / "404.html").exists()
     ET.fromstring((out / "feed.xml").read_text())
 
