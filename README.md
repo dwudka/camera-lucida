@@ -1,44 +1,54 @@
-# camera-lucida
+# camera lucida
 
-Long reads and interactive charts on AI and healthcare economics, built from public data.
+**Long reads and interactive charts on how Medicare pays for care, and what new AI models can and cannot do with that data.**
 
-Site: <https://dwudka.github.io/camera-lucida/>
+[**Visit the site →**](https://dwudka.github.io/camera-lucida/)
 
-The name comes from the camera lucida, the drawing aid Santiago Ramón y Cajal used to trace what he saw through the microscope onto paper. This repo holds the finished drawings; the working material lives elsewhere.
+---
 
-Views are my own and do not represent my employer.
+## Why I do this
 
-## What is here
-Each published page is one folder at the repo root:
+I work in healthcare economics, and I trained in neuroscience before that. Both fields taught me the same habit: look closely at the raw material before trusting the summary.
 
-```
-<YYYY-MM-DD>-<slug>/
-  index.html      the page (self-contained)
-  interactive/    a standalone interactive chart, when the page has one
-  meta.json       title, date, lane, kind, description
-```
+Medicare publishes an enormous amount of that raw material. Payment rules, quarterly spending files, ownership records, program results. Most of it is free, and most of it goes unread because it takes real effort to turn a 1,500-page rule or a 40-column file into something a person can reason about.
 
-`index.html` and `feed.xml` at the site root are generated from the `meta.json` files on every push; they are not committed.
+I enjoy that effort. Most weeks I pick one question, pull the public data, and work on it until I can show the answer in a single chart. I do it on my own time because I like the work, and I publish it because the questions are ones people in this field argue about every day.
 
-## How pages get here
-Pages are written and reviewed in a private workspace. A page is copied here only after it passes an adversarial review (number provenance, source checks, method checks) and is approved. Nothing built from synthetic data is published.
+## What you will find here
 
-- All data is public: CMS public use files, the Federal Register, published research. Each page lists its sources and how its numbers were computed.
-- Corrections are never silent. A factual fix adds a dated line to the corrections log at the bottom of the page.
-- A withdrawn page leaves a short notice at its URL.
+| | |
+|---|---|
+| **Long reads** | A policy change or a dataset worked through from start to finish: what happened, what the numbers show, where the evidence stops, and what I would do with it. |
+| **Interactive charts** | The same analysis, opened up so you can check your own state, hospital type, drug class or ACO size. |
+| **Data cuts** | One public dataset and one comparison that changes the first impression of it. |
+| **Model tests** | A new AI release, tried on a real payment-policy task and scored against answers I labeled by hand. |
 
-## Build locally
-```
-python3 scripts/build_site.py _site
-python3 -m http.server -d _site 8000
-```
-Standard library only. Tests: `python3 -m pytest -q`.
+## How I work
 
-## Workflows
-| Workflow | Trigger | Purpose |
-|---|---|---|
-| `pages.yml` | Push to `main`, manual | Builds the index and feed, deploys to GitHub Pages |
-| `ci.yml` | Pull request | Tests the site builder and lints commit messages |
+- **Public data only.** CMS public use files, the Federal Register, published research. Every piece lists its sources.
+- **Code computes every number.** Nothing is estimated by eye or taken from a summary I could not reproduce.
+- **Uncertainty is part of the answer.** Where an interval exists, it is on the chart.
+- **Every piece is challenged before it goes up.** Each one goes through a review that tries to break it: rerunning the numbers, checking the sources, writing the strongest counter-argument.
+- **Corrections are made in the open.** A fix adds a dated note to the page.
 
-## Contributing
-Commits follow Conventional Commits (`type(scope): summary`), are atomic, and carry a body when the subject is not enough. Published pages use `feat(read): publish <folder>`; corrections use `fix(read): <folder> <what changed>`. Pull requests follow `.github/pull_request_template.md`.
+## On the bench
+
+Work in progress. These appear on the site as each one clears review.
+
+- Rural Health Transformation funding and which hospitals are under financial strain
+- Which drugs are likely to be selected for Medicare price negotiation
+- Shared savings for ACOs under the 2027 rules
+- Ownership networks in hospice and home health
+- How reliably AI models classify services under new physician fee schedule rules
+
+## About the name
+
+A camera lucida is the drawing aid Santiago Ramón y Cajal used to trace what he saw through the microscope onto paper. His ink drawings of single neurons are still some of the clearest pictures of the brain ever made. The goal here is the same on a smaller scale: put one thing on the page clearly enough that someone else can see it too.
+
+## Get in touch
+
+If something here is useful to your work, or you think I got something wrong, I would like to hear it. Open an [issue](https://github.com/dwudka/camera-lucida/issues) or find me on LinkedIn.
+
+---
+
+<sub>Views are my own and do not represent my employer. All analysis uses public data.</sub>
