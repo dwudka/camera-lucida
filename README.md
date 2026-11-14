@@ -1,54 +1,43 @@
 # camera lucida
 
-**Long reads and interactive charts on how Medicare pays for care, and what new AI models can and cannot do with that data.**
+Charts and write-ups on how Medicare pays for care, made from public data. I also run new AI models against this stuff to see what they get right.
 
-[**Visit the site →**](https://dwudka.github.io/camera-lucida/)
+Site: https://dwudka.github.io/camera-lucida/
 
----
+## What this is
 
-## Why I do this
+I work in healthcare economics. Before that I studied neuroscience. This is my side project.
 
-I work in healthcare economics, and I trained in neuroscience before that. Both fields taught me the same habit: look closely at the raw material before trusting the summary.
+Medicare puts out a huge amount of public data: payment rules, drug spending files, ownership records, ACO results. Hardly anyone reads it, because a 1,500-page rule or a file with 40 columns is a slog. I like the slog. Most weeks I pick a question I've been wondering about, pull the data, and keep at it until the answer fits in one chart.
 
-Medicare publishes an enormous amount of that raw material. Payment rules, quarterly spending files, ownership records, program results. Most of it is free, and most of it goes unread because it takes real effort to turn a 1,500-page rule or a 40-column file into something a person can reason about.
+Some weeks that turns into a longer write-up. Some weeks it's a chart you can click around in to look up your own state or hospital type. And sometimes it's me running a new AI model against a payment rule and checking its answers against ones I worked out by hand.
 
-I enjoy that effort. Most weeks I pick one question, pull the public data, and work on it until I can show the answer in a single chart. I do it on my own time because I like the work, and I publish it because the questions are ones people in this field argue about every day.
+I do all of it on my own time.
 
-## What you will find here
+## A few rules I keep
 
-| | |
-|---|---|
-| **Long reads** | A policy change or a dataset worked through from start to finish: what happened, what the numbers show, where the evidence stops, and what I would do with it. |
-| **Interactive charts** | The same analysis, opened up so you can check your own state, hospital type, drug class or ACO size. |
-| **Data cuts** | One public dataset and one comparison that changes the first impression of it. |
-| **Model tests** | A new AI release, tried on a real payment-policy task and scored against answers I labeled by hand. |
+- Public data only. CMS files, the Federal Register, published papers. Every page lists its sources.
+- Every number comes from code I can rerun.
+- If there's a margin of error, it goes on the chart.
+- Before anything goes up I try to break it. I rerun the numbers, recheck the sources, and write out the best argument against my own conclusion.
+- If I get something wrong, I fix it and say so on the page.
 
-## How I work
+## What I'm working on
 
-- **Public data only.** CMS public use files, the Federal Register, published research. Every piece lists its sources.
-- **Code computes every number.** Nothing is estimated by eye or taken from a summary I could not reproduce.
-- **Uncertainty is part of the answer.** Where an interval exists, it is on the chart.
-- **Every piece is challenged before it goes up.** Each one goes through a review that tries to break it: rerunning the numbers, checking the sources, writing the strongest counter-argument.
-- **Corrections are made in the open.** A fix adds a dated note to the page.
+Nothing is posted yet. These are in progress and will show up on the site as I finish them:
 
-## On the bench
+- Rural Health Transformation funding, and which rural hospitals are in financial trouble
+- Which drugs are next in line for Medicare price negotiation
+- What the 2027 rule changes do to ACO shared savings
+- Who owns hospice and home health agencies, and how those owners are connected
+- Whether AI models can reliably sort services under the new physician fee schedule rules
 
-Work in progress. These appear on the site as each one clears review.
+## The name
 
-- Rural Health Transformation funding and which hospitals are under financial strain
-- Which drugs are likely to be selected for Medicare price negotiation
-- Shared savings for ACOs under the 2027 rules
-- Ownership networks in hospice and home health
-- How reliably AI models classify services under new physician fee schedule rules
+Santiago Ramón y Cajal drew neurons with a camera lucida, a small prism that lets you trace what's under the microscope onto paper. I still think his drawings are some of the best scientific pictures anyone has made. I named this after the tool because that's what I'm trying to do here: get one thing drawn clearly enough that someone else can see it.
 
-## About the name
+## Say hi
 
-A camera lucida is the drawing aid Santiago Ramón y Cajal used to trace what he saw through the microscope onto paper. His ink drawings of single neurons are still some of the clearest pictures of the brain ever made. The goal here is the same on a smaller scale: put one thing on the page clearly enough that someone else can see it too.
+If you work on this stuff, or you think I got something wrong, I'd like to hear from you. I'm on [LinkedIn](https://www.linkedin.com/in/dwudka/), or you can open an issue here.
 
-## Get in touch
-
-If something here is useful to your work, or you think I got something wrong, I would like to hear it. Open an [issue](https://github.com/dwudka/camera-lucida/issues) or find me on LinkedIn.
-
----
-
-<sub>Views are my own and do not represent my employer. All analysis uses public data.</sub>
+Views are my own and do not represent my employer.

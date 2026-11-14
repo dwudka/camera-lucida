@@ -1,6 +1,6 @@
-# Contributing and maintenance notes
+# Maintenance notes
 
-Technical notes for maintaining this repo. For what the site is, see the [README](README.md).
+Mostly notes to myself on how this repo works. If you're here to read, the [README](README.md) is the place to start.
 
 ## Layout
 Each published page is one folder at the repo root:
@@ -15,14 +15,14 @@ Each published page is one folder at the repo root:
 `index.html` and `feed.xml` at the site root are generated from the `meta.json` files on every push; they are not committed.
 
 ## How pages get here
-Pages are written and reviewed in a separate workspace and copied here only after they pass review and are approved. Nothing built from synthetic data is published. A withdrawn page leaves a short notice at its URL.
+I write and check each page somewhere else and copy it here once it's ready. Nothing made from placeholder data gets published. If I take a page down, I leave a short note at its URL.
 
 ## Build locally
 ```
 python3 scripts/build_site.py _site
 python3 -m http.server -d _site 8000
 ```
-Standard library only. Tests: `python3 -m pytest -q`.
+No dependencies. Tests: `python3 -m pytest -q`.
 
 ## Workflows
 | Workflow | Trigger | Purpose |
@@ -31,4 +31,4 @@ Standard library only. Tests: `python3 -m pytest -q`.
 | `ci.yml` | Pull request | Tests the site builder and lints commit messages |
 
 ## Commits and pull requests
-Commits follow Conventional Commits (`type(scope): summary`), are atomic, and carry a body when the subject is not enough. Published pages use `feat(read): publish <folder>`; corrections use `fix(read): <folder> <what changed>`. Pull requests follow `.github/pull_request_template.md`.
+I use Conventional Commits (`type(scope): summary`), one change per commit, with a body when the subject doesn't say enough. New pages are `feat(read): publish <folder>`; corrections are `fix(read): <folder> <what changed>`. PRs use the template in `.github/`.
