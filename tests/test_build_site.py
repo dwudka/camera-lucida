@@ -28,13 +28,14 @@ def test_lists_pages_newest_first_and_escapes(tmp_path):
     root, out = tmp_path / "root", tmp_path / "out"
     page(root, "2026-12-01-older", title="Older <read>", kind="long-read", description="A & B")
     page(root, "2026-12-08-newer", title="Newer", kind="interactive")
+    page(root, "2026-11-30-oldest", title="Oldest", kind="post")
     (root / "scripts").mkdir()
     (root / "2026-12-09-no-meta").mkdir()
     items = bs.build(root, out)
-    assert [m["slug"] for m in items] == ["2026-12-08-newer", "2026-12-01-older"]
+    assert [m["slug"] for m in items] == ["2026-12-08-newer", "2026-12-01-older", "2026-11-30-oldest"]
     text = (out / "index.html").read_text()
     assert text.index("Newer") < text.index("Older &lt;read&gt;") and "A &amp; B" in text
-    assert "Long read" in text and "Interactive" in text and "Dec 8, 2026" in text
+    assert "Long read" in text and "Interactive" in text and ">Post<" in text and "Dec 8, 2026" in text
     assert (out / "2026-12-01-older" / "index.html").exists() and not (out / "scripts").exists()
     feed = ET.fromstring((out / "feed.xml").read_text())
-    assert [i.findtext("title") for i in feed.iter("item")] == ["Newer", "Older <read>"]
+    assert [i.findtext("title") for i in feed.iter("item")] == ["Newer", "Older <read>", "Oldest"]
