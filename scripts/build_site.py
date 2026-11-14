@@ -22,7 +22,7 @@ SITE_TITLE = "camera lucida"
 TAGLINE = "Charts and write-ups on how Medicare pays for care, made from public data."
 DISCLAIMER = "Views are my own and do not represent my employer."
 NAME = re.compile(r"^\d{4}-\d{2}-\d{2}-[a-z0-9][a-z0-9-]*$")
-KINDS = {"long-read": "Long read", "interactive": "Interactive"}
+KINDS = {"long-read": "Long read", "interactive": "Interactive", "post": "Post"}
 
 CSS = """
 :root{--ink:#16181B;--graphite:#4A4F57;--muted:#6B7078;--hairline:#D9D4C7;--paper:#FAF7F0;--white:#FFFFFF;--fixative:#0E4F5C;--amber:#BB731B}

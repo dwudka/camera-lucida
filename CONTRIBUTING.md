@@ -8,6 +8,7 @@ Each published page is one folder at the repo root:
 ```
 <YYYY-MM-DD>-<slug>/
   index.html      the page (self-contained)
+  hero.png        the post's image, for a short post
   interactive/    a standalone interactive chart, when the page has one
   meta.json       title, date, lane, kind, description
 ```
