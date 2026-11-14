@@ -19,7 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 BASE_URL = "https://dwudka.github.io/camera-lucida/"
 SITE_TITLE = "camera lucida"
-TAGLINE = "Long reads and interactive charts on how Medicare pays for care, and what new AI models can and cannot do with that data."
+TAGLINE = "Charts and write-ups on how Medicare pays for care, made from public data."
 DISCLAIMER = "Views are my own and do not represent my employer."
 NAME = re.compile(r"^\d{4}-\d{2}-\d{2}-[a-z0-9][a-z0-9-]*$")
 KINDS = {"long-read": "Long read", "interactive": "Interactive"}
@@ -74,7 +74,7 @@ def index_html(items: list[dict]) -> str:
             for m in items)
         body = f"<ul>\n{rows}\n</ul>"
     else:
-        body = '<p class="empty">The first pieces are in review and will appear here as each one clears it.</p>'
+        body = '<p class="empty">Nothing posted yet. The first few are in progress.</p>'
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -92,7 +92,7 @@ def index_html(items: list[dict]) -> str:
 <h1>{SITE_TITLE}</h1>
 <p class="deck">{e(TAGLINE)}</p>
 {body}
-<footer><span>DANNY · <a href="feed.xml">RSS</a></span><span>{DISCLAIMER}</span></footer>
+<footer><span>DANNY · <a href="https://www.linkedin.com/in/dwudka/">LinkedIn</a> · <a href="feed.xml">RSS</a></span><span>{DISCLAIMER}</span></footer>
 </main>
 </body>
 </html>
@@ -117,7 +117,7 @@ def feed_xml(items: list[dict]) -> str:
 def not_found_html() -> str:
     return (f'<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             f"<title>Not found · {SITE_TITLE}</title>{FONTS}<style>{CSS}</style><main><div class=\"eyebrow\">404</div>"
-            f'<h1>Page not found</h1><p class="deck">This page does not exist or was withdrawn. <a href="{BASE_URL}">Back to the index</a>.</p>'
+            f'<h1>Page not found</h1><p class="deck">Nothing lives at this address. It may have been taken down. <a href="{BASE_URL}">Back to the index</a>.</p>'
             f"<footer><span>DANNY</span><span>{DISCLAIMER}</span></footer></main></html>\n")
 
 
