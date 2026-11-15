@@ -4,5 +4,6 @@
   "title": "Can public ownership data tell which hospices will lose their Medicare billing privileges?",
   "description": "I used CMS's quarterly hospice enrollment and ownership files and its Provider of Services file, all on data.cms.gov.",
   "lane": "",
-  "kind": "post"
+  "kind": "post",
+  "purpose": "finding"
 }
