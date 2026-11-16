@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My model ranked rural hospital closures well. Why did it expect 49 where 34 happened?</title>
+<meta name="description" content="It gives each rural hospital a three-year closure risk, from CMS cost reports (HCRIS) and the Sheps Center&#x27;s closure list. I tested it on 5,395 hospital-years (one hospital, one cost report year) f...">
+<meta property="og:title" content="My model ranked rural hospital closures well. Why did it expect 49 where 34 happened?"><meta property="og:description" content="It gives each rural hospital a three-year closure risk, from CMS cost reports (HCRIS) and the Sheps Center&#x27;s closure list. I tested it on 5,395 hospital-years (one hospital, one cost report year) f..."><meta property="og:type" content="article"><meta property="og:url" content="https://dwudka.github.io/camera-lucida/2026-11-19-calibration-closure-risk/"><meta property="og:image" content="https://dwudka.github.io/camera-lucida/2026-11-19-calibration-closure-risk/hero.png"><link rel="canonical" href="https://dwudka.github.io/camera-lucida/2026-11-19-calibration-closure-risk/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&family=Spectral:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#16181B;--graphite:#4A4F57;--muted:#6B7078;--hairline:#D9D4C7;--paper:#FAF7F0;--white:#FFFFFF;--fixative:#0E4F5C;--amber:#BB731B}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 18px/1.6 'IBM Plex Sans',Arial,sans-serif}
+main{max-width:680px;margin:0 auto;padding:48px 16px 40px}
+.eyebrow{font:500 12px 'IBM Plex Mono',Consolas,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.eyebrow a{color:var(--muted)}
+h1{font:300 38px/1.12 'Spectral',Georgia,serif;letter-spacing:-.01em;margin:14px 0 24px}
+p{margin:0 0 20px}
+p.q{font:400 24px/1.3 'Spectral',Georgia,serif;color:var(--fixative);margin:28px 0}
+figure{margin:32px 0}
+figure img{width:100%;height:auto;display:block;border:1px solid var(--hairline);border-radius:6px}
+h2{font:500 12px 'IBM Plex Mono',Consolas,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:40px 0 10px}
+.src{font-size:15px;color:var(--graphite);overflow-wrap:anywhere}
+.src p{margin:0 0 8px}
+a{color:var(--fixative)}
+footer{border-top:1px solid var(--hairline);margin-top:48px;padding-top:16px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font:400 12px 'IBM Plex Mono',Consolas,monospace;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+<div class="eyebrow"><a href="../">camera lucida</a> · November 19, 2026</div>
+<h1>My model ranked rural hospital closures well. Why did it expect 49 where 34 happened?</h1>
+<figure><img src="hero.png" alt="Seven-page explainer on checking a risk model&#x27;s percentages, using a model of rural hospital closure risk tested on 5,395 hospital-years from 2021 to 2023, 34 of them followed by a closure. The cover chart plots observed closures divided by expected closures with 90% intervals: 0.69 (0.41 to 0.99) before any fix, when the model expected 49.1, and 1.06 (0.63 to 1.52) after rescaling on 2019 and 2020, when it expected 32.1. Later pages show the ranking score (AUC 0.780, then 0.775), expected against observed closures by fifth of risk (39.1 against 18 in the highest fifth, 10.0 against 16 in the other four), and the ratio for a separate fit on 2011 to 2016 rescaled on 2017 and 2018: 0.61 (0.36 to 0.87), with 56.2 expected. The last page gives expected against observed closures by report year: 14.0 against 14 for 2021, 16.5 against 13 for 2022 and 18.6 against 7 for 2023, whose three-year window runs to the end of 2026." width="1080" height="1350"></figure>
+<p>It gives each rural hospital a three-year closure risk, from CMS cost reports (HCRIS) and the Sheps Center&#x27;s closure list. I tested it on 5,395 hospital-years (one hospital, one cost report year) from 2021 to 2023; 34 preceded a closure, at 17 hospitals. The first check is ranking: in 78% of 182,274 closure and non-closure pairs, the closure had the higher risk. That share is the AUC, 0.780 (0.680 to 0.864 in 90% of resamples of hospitals).</p>
+<p>The second check is counting: if the percentages are right, they add up to the closures to expect. The sum was 49.1 against 34 observed, an observed-to-expected ratio of 0.69 (0.41 to 0.99). By report year it expected 14.0, 16.5 and 18.6 and saw 14, 13 and 7; my closure list stops two months before the 2023 window ends. Whether risks match what happens is called calibration; the AUC, using only their order, cannot see it. I rescaled every risk with two numbers fitted on 2019 and 2020. The sum became 32.1, ratio 1.06 (0.63 to 1.52). I had reported that model as meeting my targets.</p>
+<p>A review found what I had wrong: 10 of the 20 hospitals closing in the rescaling years&#x27; windows count as test-year closures. Refit on 2011 to 2016 and rescaled on 2017 and 2018, which share none, it expects 56.2, ratio 0.61 (0.36 to 0.87). That one over-predicts here and the other had seen part of the answer, so I trust neither count. I would not read a good ranking score as evidence that a 2% risk means 2 in 100.</p>
+<p class="q">When a risk model ranks well and its percentages have not held up, what would you still let it decide?</p>
+<h2>Sources</h2><div class="src"><p>The calibration paper: Van Calster, McLernon, van Smeden, Wynants and Steyerberg, &quot;Calibration: the Achilles heel of predictive analytics&quot;, BMC Medicine 2019;17:230, open access: <a href="https://doi.org/10.1186/s12916-019-1466-7">https://doi.org/10.1186/s12916-019-1466-7</a></p><p>Hospital cost reports (HCRIS), CMS: <a href="https://www.cms.gov/data-research/statistics-trends-and-reports/cost-reports/hospital-2552-2010-form">https://www.cms.gov/data-research/statistics-trends-and-reports/cost-reports/hospital-2552-2010-form</a></p><p>Rural hospital closures, Sheps Center, UNC: <a href="https://www.shepscenter.unc.edu/programs-projects/rural-health/rural-hospital-closures/">https://www.shepscenter.unc.edu/programs-projects/rural-health/rural-hospital-closures/</a></p><p>Provider of Services file, CMS: <a href="https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/provider-of-services-file-hospital-non-hospital-facilities">https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/provider-of-services-file-hospital-non-hospital-facilities</a></p><p>Method: closure means closure within 3 years after a cost report year; conversions to a Rural Emergency Hospital are left out. The model was fit on report years 2011 to 2018 and tested on 2021 to 2023; the 2017 and 2018 rescaling uses a separate fit on 2011 to 2016. Intervals are 90%, from 1,000 resamples of whole hospitals.</p></div>
+<footer><span>DANNY · <a href="../">All posts</a></span><span>Views are my own and do not represent my employer.</span></footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "slug": "2026-11-19-calibration-closure-risk",
+  "date": "2026-11-19",
+  "title": "My model ranked rural hospital closures well. Why did it expect 49 where 34 happened?",
+  "description": "It gives each rural hospital a three-year closure risk, from CMS cost reports (HCRIS) and the Sheps Center's closure list.",
+  "lane": "data-cut",
+  "kind": "post",
+  "purpose": "lesson"
+}
